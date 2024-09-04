@@ -1,5 +1,25 @@
-# DeepfakeDetection
-使用模型识别某个模态信息是否为AI生成
+
+
+## 文件主要内容：
+
+1. fake_image里面是一些假的ai图像
+
+2. 两个pipeline文件需要搭配从Hugging face下载的现成模型，pipeline应用的是模型推理，需要微调的话可以参考我写的BERT部分。
+
+- 推荐Hugging face上表现好的模型：
+
+- 图像（这个模型是我测试过在Hugging face上最好用的）：[DhruvJariwala/deepfake_vs_real_image_detection · Hugging Face](https://huggingface.co/DhruvJariwala/deepfake_vs_real_image_detection)
+
+- 语音：[DavidCombei (David Combei) (huggingface.co)](https://huggingface.co/DavidCombei)
+
+  
+
+3. 两个Just_test_the_xxxx_model也是结合Hugging face模型的，用于测试模型好不好
+4. Json读取是用于OpenForensics数据集的标签文件.json，使用该.py文件会得到文件名和标签的一一对应json文件。这个数据集表现力很强，下面有相关链接。有了数据集和标签之后就可以开始准备训练了。
+5. 做深伪识别的话，常遇到视频数据集，这个时候需要对视频做切帧处理以获得大量图像。对于图像的话，首先需要人脸定位，把人脸提取下来再做识别，或者叫extract，我这里提供face_extract.py可供参考。
+
+视频切帧、图像头像获取算法可以参考：[FaceForensics/classification/detect_from_video.py at master · ondyari/FaceForensics · GitHub](https://github.com/ondyari/FaceForensics/blob/master/classification/detect_from_video.py#L175)
+
 # 为什么要做深伪检测
 
 **技术发展背景**
@@ -55,4 +75,3 @@
 |  2   |    Celeb-DF     | 包含不同年龄、种族和性别的名人视频和对应的伪造视频590真实名人视频5639虚假名人视频 |           3.2           |     https://github.com/yuezunli/celeb-deepfakeforensics      |
 |  3   | DeeperForensics |     60000视频，共1760万帧图像。54000真实视频6000伪造视频     |           2.8           | 申请制：[DeeperForensics-1.0/dataset at master · EndlessSora/DeeperForensics-1.0 (github.com)](https://github.com/EndlessSora/DeeperForensics-1.0/tree/master/dataset#download) |
 |  4   | FaceForensic++  |             1000真实视频4000伪造视频1800万张图像             |           1.3           | [FaceForensics/dataset at master · ondyari/FaceForensics (github.com)](https://github.com/ondyari/FaceForensics/tree/master/dataset) |
-
